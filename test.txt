@@ -1,1 +1,3 @@
-Hello
+Hello, world!
+This is ccwc.
+Multiple   spaces still count.
