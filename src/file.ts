@@ -21,14 +21,12 @@ export function getFileSize(fileInfo: Stats): number {
    
 }
 
-export function getLineCount(fileName: string): number {
-    const content = readFileContent(fileName);
+export function getLineCount(content: string): number {
     const lines = content.split("\n");
     return lines.length - 1;
 }
 
-export function getWordCount(fileName: string): number {
-    const content = readFileContent(fileName);
+export function getWordCount(content: string): number {
     const trimmedContent = content.trim();
     if(trimmedContent.length === 0){
         return 0;
@@ -37,8 +35,7 @@ export function getWordCount(fileName: string): number {
     return words.length;
 }
 
-export function getCharacterCount(fileName: string): number {
-    const content = readFileContent(fileName);
+export function getCharacterCount(content: string): number {
     let count = 0;
     for (const _character of content){
         count ++;

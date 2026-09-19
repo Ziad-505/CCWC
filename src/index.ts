@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, getLineCount, getWordCount, getCharacterCount } from './file.js';
+import { getFileSize, getFileInfo, getLineCount, getWordCount, getCharacterCount, readFileContent } from './file.js';
 
 try {
     if(argv.length < 3 || argv.length > 4) {
@@ -13,8 +13,9 @@ try {
             stderr.write('Usage: ccwc [-<option>] <file>\n');
             process.exit(1);
         }
+        const content = readFileContent(fileName);
         const fileInfo = getFileInfo(fileName);
-        console.log(`${getLineCount(fileName)} ${getWordCount(fileName)} ${getFileSize(fileInfo)} ${fileName}`);
+        console.log(`${getLineCount(content)} ${getWordCount(content)} ${getFileSize(fileInfo)} ${fileName}`);
     }else {
         const option = argv[2];
         const fileName = argv[3];
@@ -22,11 +23,14 @@ try {
             const fileInfo = getFileInfo(fileName);
             console.log(`${getFileSize(fileInfo)} ${fileName}`);
         }else if(option === '-l'){
-            console.log(`${getLineCount(fileName)} ${fileName}`);
+            const content = readFileContent(fileName);
+            console.log(`${getLineCount(content)} ${fileName}`);
         }else if(option === '-w'){
-            console.log(`${getWordCount(fileName)} ${fileName}`);
+            const content = readFileContent(fileName);
+            console.log(`${getWordCount(content)} ${fileName}`);
         }else if(option === '-m'){
-            console.log(`${getCharacterCount(fileName)} ${fileName}`);
+            const content = readFileContent(fileName);
+            console.log(`${getCharacterCount(content)} ${fileName}`);
         }else {
             stderr.write(`Error: ${option} is not a supported option\n`);
             process.exit(1);
