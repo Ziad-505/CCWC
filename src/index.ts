@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, readFileContent, readStandardInput } from './file.js';
+import { getFileSize, getFileInfo, readFileContent, readStandardInput } from './input.js';
 import { getLineCount, getWordCount, getCharacterCount } from './counts.js';
 import { parseArguments } from './cli.js';
 
