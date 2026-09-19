@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, getLineCount, getWordCount } from './file.ts';
+import { getFileSize, getFileInfo, getLineCount, getWordCount } from './file.js';
 
 try {
     if(argv.length !== 4) {
