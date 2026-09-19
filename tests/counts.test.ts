@@ -24,7 +24,7 @@ test('counts newline characters', () => {
 });
 
 
-//Word Count Tests
+// Word Count Tests
 test('returns zero words for whitespace-only content', () => {
     const content = '   \n\t  ';
     const result = getWordCount(content);
@@ -37,7 +37,7 @@ test('counts words separated by mixed whitespace', () => {
     assert.strictEqual(result, 4);
 });
 
-//Character Count Tests
+// Character Count Tests
 test('returns zero characters for empty content', () => {
     const content = '';
     const result = getCharacterCount(content);
