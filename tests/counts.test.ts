@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { getLineCount, getCharacterCount, getWordCount } from "../src/file.js";
+import { getLineCount, getCharacterCount, getWordCount } from "../src/counts.js";
 
 
 // Line Count Tests

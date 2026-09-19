@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, getLineCount, getWordCount, getCharacterCount, readFileContent } from './file.js';
+import { getFileSize, getFileInfo, readFileContent } from './file.js';
+import { getLineCount, getWordCount, getCharacterCount } from './counts.js';
 
 try {
     if(argv.length < 3 || argv.length > 4) {
