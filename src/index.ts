@@ -9,17 +9,17 @@ try {
     const { option, fileName } = parseArguments(userArguments);
     let content: string;
     let byteCount: number;
-    if (fileName !== undefined) {
+    if(fileName !== undefined) {
         content = readFileContent(fileName);
         const fileInfo = getFileInfo(fileName);
         byteCount = getFileSize(fileInfo);
-    } else {
+    } else{
         const input = readStandardInput();
         content = input.toString('utf8');
         byteCount = input.length;
     }
     const fileLabel = fileName === undefined ? '' : ` ${fileName}`;
-    if (option === undefined) {
+    if(option === undefined) {
         console.log(
             `${getLineCount(content)} ${getWordCount(content)} ${byteCount}${fileLabel}`
         );
@@ -34,8 +34,8 @@ try {
     }
 } catch (error) {
     if(error instanceof Error) {
-        stderr.write("Error: " + error.message + '\n');
-    }else {
+        stderr.write('Error: ' + error.message + '\n');
+    }else{
         stderr.write('Error: Unknown Error occurred\n');
     }
     process.exit(1);

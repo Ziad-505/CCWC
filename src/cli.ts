@@ -2,7 +2,6 @@ export type ParsedArguments = {
     option?: '-c' | '-l' | '-w' | '-m';
     fileName?: string;
 };
-
 export function parseArguments(args: string[]): ParsedArguments {
     if(args.length === 0){
         return {};
@@ -20,10 +19,10 @@ export function parseArguments(args: string[]): ParsedArguments {
     if(args.length === 2){
         const option = args[0];
         const fileName = args[1];
-        if(fileName.startsWith("-")) {
+        if(fileName.startsWith('-')) {
             throw new Error('Usage: ccwc [-<option>] <file>');
         }
-        if(!option.startsWith("-")){
+        if(!option.startsWith('-')){
             throw new Error('Usage: ccwc [-<option>] <file>');
         }
         if(option === '-c' || option === '-l' || option === '-w' || option === '-m'){

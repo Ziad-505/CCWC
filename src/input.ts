@@ -1,26 +1,20 @@
 import { type Stats, statSync, readFileSync } from 'node:fs';
 
-
 export function getFileInfo(fileName: string){
     const fileInfo = statSync(fileName);
     if(fileInfo.isFile()) {
         return fileInfo;
-    } else {
+    }else{
         throw new Error(`${fileName} is not a file`);
     }
 }
-
 export function readFileContent(fileName: string) {
     getFileInfo(fileName);
     return readFileSync(fileName, 'utf-8');
-
 }
-
 export function getFileSize(fileInfo: Stats): number {
     return fileInfo.size;
-   
 }
-
 export function readStandardInput(): Buffer {
     return readFileSync(0);
 }
