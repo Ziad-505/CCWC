@@ -36,3 +36,12 @@ export function getWordCount(fileName: string): number {
     const words = trimmedContent.split(/\s+/);
     return words.length;
 }
+
+export function getCharacterCount(fileName: string): number {
+    const content = readFileContent(fileName);
+    let count = 0;
+    for (const _character of content){
+        count ++;
+    }
+    return count;
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, getLineCount, getWordCount } from './file.js';
+import { getFileSize, getFileInfo, getLineCount, getWordCount, getCharacterCount } from './file.js';
 
 try {
     if(argv.length !== 4) {
@@ -18,6 +18,8 @@ try {
         console.log(`${getLineCount(fileName)} ${fileName}`);  
     }else if(option === '-w'){
         console.log(`${getWordCount(fileName)} ${fileName}`);  
+    }else if(option === '-m'){
+        console.log(`${getCharacterCount(fileName)} ${fileName}`);  
     }else {
         stderr.write(`Error: ${option} is not a supported option\n`);
         process.exit(1);    
