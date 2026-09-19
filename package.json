@@ -1,21 +1,40 @@
 {
   "name": "ccwc",
   "version": "1.0.0",
-  "description": "",
+  "description": "A TypeScript implementation of the Unix wc command.",
+  "type": "module",
   "bin": {
     "ccwc": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc --noEmit && tsc -p tests/tsconfig.json",
     "pretest": "npm run build",
-    "test": "tsx --test"
+    "test": "tsx --test",
+    "check": "npm run typecheck && npm test"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziad-505/CCWC.git"
+  },
+  "homepage": "https://github.com/Ziad-505/CCWC#readme",
+  "bugs": {
+    "url": "https://github.com/Ziad-505/CCWC/issues"
+  },
+  "keywords": [
+    "cli",
+    "wc",
+    "typescript",
+    "nodejs",
+    "unix"
+  ],
+  "author": "Ziad Ahmed",
   "license": "ISC",
-  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "devDependencies": {
-    "@types/node": "^26.6.2",
+    "@types/node": "^24.0.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   }
