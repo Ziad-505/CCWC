@@ -22,7 +22,17 @@ export function getFileSize(fileInfo: Stats): number {
 }
 
 export function getLineCount(fileName: string): number {
-    const content = readFileContent(fileName)
+    const content = readFileContent(fileName);
     const lines = content.split("\n");
-    return lines.length;
+    return lines.length - 1;
+}
+
+export function getWordCount(fileName: string): number {
+    const content = readFileContent(fileName);
+    const trimmedContent = content.trim();
+    if(trimmedContent.length === 0){
+        return 0;
+    }
+    const words = trimmedContent.split(/\s+/);
+    return words.length;
 }

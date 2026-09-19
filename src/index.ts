@@ -1,5 +1,6 @@
+#!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, getLineCount } from './file.ts';
+import { getFileSize, getFileInfo, getLineCount, getWordCount } from './file.ts';
 
 try {
     if(argv.length !== 4) {
@@ -15,6 +16,8 @@ try {
         console.log(`${getFileSize(fileInfo)} ${fileName}`);
     }else if(option === '-l'){
         console.log(`${getLineCount(fileName)} ${fileName}`);  
+    }else if(option === '-w'){
+        console.log(`${getWordCount(fileName)} ${fileName}`);  
     }else {
         stderr.write(`Error: ${option} is not a supported option\n`);
         process.exit(1);    
