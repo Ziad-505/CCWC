@@ -1,41 +1,36 @@
 #!/usr/bin/env node
 import { argv, stderr } from 'node:process';
-import { getFileSize, getFileInfo, readFileContent } from './file.js';
+import { getFileSize, getFileInfo, readFileContent, readStandardInput } from './file.js';
 import { getLineCount, getWordCount, getCharacterCount } from './counts.js';
+import { parseArguments } from './cli.js';
 
 try {
-    if(argv.length < 3 || argv.length > 4) {
-        stderr.write('Usage: ccwc [-<option>] <file>\n');
-        process.exit(1);
-    }
-    if(argv.length === 3){
-        const fileName = argv[2];
-        if(fileName.startsWith("-")) {
-            stderr.write('Usage: ccwc [-<option>] <file>\n');
-            process.exit(1);
-        }
-        const content = readFileContent(fileName);
+    const userArguments = argv.slice(2);
+    const { option, fileName } = parseArguments(userArguments);
+    let content: string;
+    let byteCount: number;
+    if (fileName !== undefined) {
+        content = readFileContent(fileName);
         const fileInfo = getFileInfo(fileName);
-        console.log(`${getLineCount(content)} ${getWordCount(content)} ${getFileSize(fileInfo)} ${fileName}`);
-    }else {
-        const option = argv[2];
-        const fileName = argv[3];
-        if(option === '-c') {
-            const fileInfo = getFileInfo(fileName);
-            console.log(`${getFileSize(fileInfo)} ${fileName}`);
-        }else if(option === '-l'){
-            const content = readFileContent(fileName);
-            console.log(`${getLineCount(content)} ${fileName}`);
-        }else if(option === '-w'){
-            const content = readFileContent(fileName);
-            console.log(`${getWordCount(content)} ${fileName}`);
-        }else if(option === '-m'){
-            const content = readFileContent(fileName);
-            console.log(`${getCharacterCount(content)} ${fileName}`);
-        }else {
-            stderr.write(`Error: ${option} is not a supported option\n`);
-            process.exit(1);
-        }
+        byteCount = getFileSize(fileInfo);
+    } else {
+        const input = readStandardInput();
+        content = input.toString('utf8');
+        byteCount = input.length;
+    }
+    const fileLabel = fileName === undefined ? '' : ` ${fileName}`;
+    if (option === undefined) {
+        console.log(
+            `${getLineCount(content)} ${getWordCount(content)} ${byteCount}${fileLabel}`
+        );
+    }else if(option === '-c'){
+        console.log(`${byteCount}${fileLabel}`);
+    }else if(option === '-l'){
+        console.log(`${getLineCount(content)}${fileLabel}`);
+    }else if(option === '-w'){
+        console.log(`${getWordCount(content)}${fileLabel}`);
+    }else if(option === '-m'){
+        console.log(`${getCharacterCount(content)}${fileLabel}`);
     }
 } catch (error) {
     if(error instanceof Error) {

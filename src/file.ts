@@ -20,3 +20,7 @@ export function getFileSize(fileInfo: Stats): number {
     return fileInfo.size;
    
 }
+
+export function readStandardInput(): Buffer {
+    return readFileSync(0);
+}
